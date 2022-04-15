@@ -40,7 +40,7 @@ function showPage (list, page){
    }
    
 }
-showPage(data, 1);
+
 
 
 
@@ -60,10 +60,23 @@ function addPagination(list){
       <button type="button">${i}</button>
     </li>`
     linkList.insertAdjacentHTML('beforeend', button);
+    const firstBtn =document.querySelector('button:first-child');
+    firstBtn.className = 'active';
+
+    linkList.addEventListener('click', (e) =>{
+      if (e.target.tagName === 'BUTTON'){
+         let activeBtn = document.querySelector('.active');
+         activeBtn.className = '';
+         e.target.className = 'active';
+         showPage(list, e.target.textContent);
+      }
+    }
+
    }
 }
 
 
 
 // Call functions
+showPage(data, 1);
 addPagination(data);
